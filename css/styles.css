@@ -1,0 +1,15 @@
+td{
+	width: 75px;
+	height: 75px;
+	border-collapse: collapse;
+}
+table{
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.tableData1{
+	background-color: #654321;
+}
+.tableData2{
+	background-color: tan;
+}
