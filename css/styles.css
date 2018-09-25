@@ -1,6 +1,6 @@
 td{
-	width: 75px;
-	height: 75px;
+	width: 25px;
+	height: 25px;
 	border-collapse: collapse;
 }
 table{
@@ -12,4 +12,15 @@ table{
 }
 .tableData2{
 	background-color: tan;
+}
+
+.evenDate{
+	margin: 0;
+	color: white;
+	font-size: 30px;
+}
+.oddDate{
+	margin: 0;
+	color: white;
+	font-size: 30px;
 }

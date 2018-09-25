@@ -35,13 +35,13 @@ for(var i = 0; i < 12; i++){
 }
 //console.log(pass);
 
-
+var data = [];
 var myTable = document.getElementById("nestedTable");
-for(var numRow = 0; numRow < 8; numRow++){
+for(var numRow = 0; numRow < 24; numRow++){
 	var row = document.createElement("tr");
 	myTable.append(row);
 
-	for(var numCol = 0; numCol < 8; numCol++){
+	for(var numCol = 0; numCol < 24; numCol++){
 		var col = document.createElement("td");
 		if(numRow % 2 == 0){
 			if(numCol % 2 == 0)
@@ -54,9 +54,34 @@ for(var numRow = 0; numRow < 8; numRow++){
 			else
 				col.setAttribute("class", "tableData2");
 		}
+		data.push(col);
 		row.append(col);
 	}
 }
+
+
+var tableIndex;
+function ColorfulTable(){
+	tableIndex = Math.floor(Math.random() * data.length)
+	var r = Math.floor(Math.random() * 256)
+	var g = Math.floor(Math.random() * 256)
+	var b = Math.floor(Math.random() * 256)
+	data[tableIndex].style.backgroundColor = "rgb( " + r + "," + g + "," + b + ")";
+	setTimeout(ColorfulTable, 0);
+}
+ColorfulTable();
+
+
+
+
+
+
+
+
+
+
+
+
 var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var spec = ["!", "@", "#", "$", "%"];
 
@@ -171,9 +196,60 @@ function ModString(val){
 	}
 }
 
+$("#hideButton").click(function(){
+	$("h1").toggle(1000);
+})
+$("#alertP").click(function(){
+	alert("You clicked me!")
+})
+console.log($(".colorChange").css("background-color"))
+$("#changeStyle").click(function(){
+	if($(".colorChange").css("background-color") == "rgba(0, 0, 0, 0)")
+		$(".colorChange").css("background-color", "tomato");
+	else
+		$(".colorChange").css("background-color", "rgba(0, 0, 0, 0)");
 
-var babyCat = new ModString("kitten");
-var myString = new ModString("This is a string");
+})
 
 
-babyCat.CountLength();
+var count = 0;
+$("#addDate").click(function(){
+	if(count % 2 == 0)
+		$("#dateDiv").append("<p class='evenDate'>" + new Date() + "</p>");
+	else 
+		$("#dateDiv").append("<p class='oddDate'>" + new Date() + "</p>");
+
+	count++
+})
+
+
+
+
+$("#clearDates").click(function(){
+	$("#dateDiv").empty()
+})
+
+
+var t;
+$("#ourButton").click(function(){
+	clearTimeout(t);
+	AddDate();
+});
+
+
+function AddDate(){
+	if(count % 10 == 0){
+		$("#dateDiv").empty();
+	}
+	var r = Math.floor(Math.random() * 256)
+	var g = Math.floor(Math.random() * 256)
+	var b = Math.floor(Math.random() * 256)
+	if(count % 2 == 0)
+		$("#dateDiv").append("<p class='evenDate' style='background-color: rgb(" + r + "," + g + "," + b + ")'>" + new Date() + "</p>");
+	else 
+		$("#dateDiv").append("<p class='oddDate' style='background-color: rgb(" + r + "," + g + "," + b + ")'>" + new Date() + "</p>");
+
+	count++
+	t = setTimeout(AddDate, 1000);
+}
+	

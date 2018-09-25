@@ -3,17 +3,30 @@
 <head>
 	<title>More Javascript</title>
 	<link rel="stylesheet" href="./css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<button id="hideButton">Hide these H1s</button>
 <h1>Hi</h1>
+<h1>These are all h1s</h1>
+<h1 class="colorChange">They are going to be hidden</h1>
+<h1 class="colorChange">Using the button above</h1>
+<h1>I might even use the fade effect</h1>
+<h1>For some added bonus</h1>
+
+<p id="alertP" class="colorChange" style="font-size: 30px">Click on me for an alert!</p>
+
+<button id="changeStyle">Click on me to change some elements!</button>
+<button id="ourButton">Click on me to append the date below</button><button id="clearDates">Click on me to clear the dates below</button>
+<div id="dateDiv"></div>
+
 <table id="nestedTable"></table>
 
-<input type="password" id="passCheck">
+<input class="colorChange" type="password" id="passCheck">
 <button onclick="CheckPass()">Check My Password</button>
 
 <input type="text" id="emailEntry">
 <button onclick="EmailAlert()">Check My Email</button>
-
 <script src="./js/main.js"></script>
 </body>
 </html>
