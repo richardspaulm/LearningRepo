@@ -86,30 +86,29 @@ var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var spec = ["!", "@", "#", "$", "%"];
 
 
-function CheckPass(){
-	var passToCheck = document.getElementById("passCheck").value;
+function CheckPass(str){
 	var condMet = 0;
 	//Condition 1
-	if(passToCheck.length >= 8)
+	if(str.length >= 8)
 		condMet +=1;
 	//Condition 2
 	for(var i = 0; i < nums.length; i++){
-		if(passToCheck.includes(nums[i])){
+		if(str.includes(nums[i])){
 			condMet += 1;
 			break;
 		}
 	}
 	//Condition 3
 	for(var j = 0; j < spec.length; j++){
-				if(passToCheck.includes(spec[j])){
+				if(str.includes(spec[j])){
 					condMet +=1;
 					break;
 				}
 			}
 	if(condMet == 3)
-		alert("It worked");
+		return true;
 	else
-		alert("no.");
+		return false;
 }
 
 
@@ -138,6 +137,22 @@ function EmailAlert(){
 	else
 		alert("Valid email please");
 }
+
+function CheckPhone(str){
+	arr = str.split("");
+	for(var i = 0; i < arr.length; i++){
+		if(arr[i] == "(" || arr[i] == ")" || arr[i] == "-")
+			arr.splice(i, 1)
+	}
+	for(var i = 0; i < arr.length; i++){
+		if(isNaN(arr[i]))
+			return false;
+	if(arr.length != 10)
+		return false
+	return true
+	}
+}
+
 
 //Logs first index of char in string
 function IndexAt(str, char){
@@ -241,7 +256,7 @@ function AddDate(){
 	if(count % 10 == 0){
 		$("#dateDiv").empty();
 	}
-	var r = Math.floor(Math.random() * 256)
+	var r = Math.floor(Math.random() * 256)       
 	var g = Math.floor(Math.random() * 256)
 	var b = Math.floor(Math.random() * 256)
 	if(count % 2 == 0)
@@ -252,4 +267,112 @@ function AddDate(){
 	count++
 	t = setTimeout(AddDate, 1000);
 }
-	
+
+
+String.prototype.Jumble = function(){
+	var jumbled = "";
+	var arr = this.split("");
+	while(arr.length > 0){
+		randInt = 
+		jumbled += 
+		arr.splice(randInt, 1)
+	}
+	console.log(jumbled);
+} 
+
+function PlayGame(){
+	var guess = 1
+	var randNum = Math.ceil(Math.random() * 20)
+	console.log(randNum)
+	var userInput = window.prompt("Feed me a number between 1 and 20");
+	while(userInput != randNum){
+		if(userInput == null)
+			return;
+		if(userInput > randNum){
+			userInput = window.prompt("Too high, try again");
+			guess++;
+		}
+		else{
+			userInput = window.prompt("Too low, try again")
+			guess++;
+		}
+	}
+	alert("You did it!\n Guesses: " + guess);
+}
+$(document).keydown(function(e){
+	//up
+	if(e.keyCode == 38){
+		e.preventDefault();
+		$("#move").animate({
+			top: "-=4px"
+		}, .1, 'linear')
+	}
+	//down
+	if(e.keyCode == 40){
+		e.preventDefault();
+		$("#move").animate({
+			top: "+=4px"
+		}, .1, 'linear')
+	}
+	//left
+	if(e.keyCode == 37){
+		$("#move").animate({
+			left: "-=4px"
+		}, .1, 'linear')		
+	}
+	//right
+	if(e.keyCode == 39){
+		$("#move").animate({
+			left: "+=4px"
+		}, .1, 'linear')
+	}
+})
+var x = 2;
+var leftMove = 5
+console.log($("#food").css("left"))
+function MoveFood(){
+	var w = document.documentElement.clientWidth;
+	var leftVal = $("#food").css("left")
+	var left = parseInt(leftVal.substr(0, (leftVal.length - 2)))
+	if(left > (w - 50)){
+		leftMove = -5
+	} else if(left < 0){
+		leftMove = 5
+	}
+	$("#food").animate({
+		left: "+=" + leftMove.toString(),
+		top: "+=" + (Math.cos(x) * 10).toString()	
+	}, 0, 'linear')		
+	x += .1;
+	setTimeout(MoveFood, 10)
+}
+MoveFood();
+var arrr = [1, 2, 3, 4];
+var joined = arrr.join("");
+console.log(joined)
+
+
+
+$(document).keyup(function(){
+	var fName = false;
+	var lName = false;
+	var phoneNum = true;
+	var email = false;
+	var password = false;
+
+	if($("#fNameInput").val().length > 0)
+		fName = true;
+	if($("#lNameInput").val().length > 0)
+		lName = true;
+	phoneNum = CheckPhone($("#phoneInput").val())
+	email = CheckEmail($("#emailInput").val())
+	password = CheckPass($("#passInput").val())
+	if(fName && lName && phoneNum && email && password){
+		$("#formButt").removeAttr("disabled");
+	} else {
+		$("#formButt").attr("disabled", "disabled");
+	}
+
+})
+
+
